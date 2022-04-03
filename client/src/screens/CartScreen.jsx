@@ -1,13 +1,15 @@
 import React from 'react'
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Button} from "react-bootstrap";
 import {useSelector, useDispatch} from "react-redux";
 import {AiOutlineMinusCircle, AiOutlinePlusCircle} from "react-icons/ai";
-import {addToCart} from "../actions/cartAction";
+import {MdDelete} from "react-icons/md";
+import {addToCart, deleteFromCart} from "../actions/cartAction";
 
 const CartScreen = () => {
     const cartState = useSelector(state => state.cartReducer);
     const cartItems = cartState.cartItems;
     const dispatch = useDispatch();
+    const subTotal = cartItems.reduce((x,item) => x + item.price, 0)
 
   return (
     <>
@@ -42,6 +44,13 @@ const CartScreen = () => {
                                 style={{cursor: "pointer"}} 
                                 onClick = {() => {dispatch(addToCart(item,item.quantity+1,item.varient))}} 
                                 />
+
+                                &nbsp; &nbsp; &nbsp;
+                                <MdDelete 
+                                className='text-danger'
+                                style={{cursor: "pointer"}}
+                                onClick = {() => {dispatch(deleteFromCart(item))}}
+                                />
                             </h6>
                         </Col>
                         <hr/>
@@ -49,7 +58,12 @@ const CartScreen = () => {
                     ))}    
                     </Row>
                 </Col>
-                <Col md={4}>Payment gateway</Col>
+                <Col md={4}>
+                    <h1>Payment Information</h1>
+                    <h4>Sub Total </h4>
+                    <h4>RS : {subTotal} /-</h4>
+                    <Button className='bg-success'>Checkout</Button>
+                </Col>
             </Row>
         </Container>
     </>

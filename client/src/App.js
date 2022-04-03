@@ -7,6 +7,8 @@ import Terms from "./components/Terms";
 import NavBar from "./components/NavBar";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/terms" component={Terms} exact />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/cart" component={CartScreen} exact />
+        <Route path="/register" component={RegisterScreen} exact />
+        <Route path="/login" component={LoginScreen} exact />
       </Switch>
     </BrowserRouter>
   );

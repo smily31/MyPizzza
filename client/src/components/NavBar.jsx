@@ -18,11 +18,12 @@ const NavBar = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               <LinkContainer to="/login">
-               
                 <Nav.Link> <IoMdLogIn/> Login</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/register">
+                <Nav.Link> <IoMdLogIn/> Register</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/cart">
-               
                 <Nav.Link> <IoMdCart/> Cart {cartState.cartItems.length}</Nav.Link>
               </LinkContainer>
             </Nav>
