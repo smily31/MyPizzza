@@ -1,9 +1,10 @@
 import React from 'react'
-import {Container, Row, Col, Button} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import {useSelector, useDispatch} from "react-redux";
 import {AiOutlineMinusCircle, AiOutlinePlusCircle} from "react-icons/ai";
 import {MdDelete} from "react-icons/md";
 import {addToCart, deleteFromCart} from "../actions/cartAction";
+import Checkout from '../components/Checkout';
 
 const CartScreen = () => {
     const cartState = useSelector(state => state.cartReducer);
@@ -62,7 +63,7 @@ const CartScreen = () => {
                     <h1>Payment Information</h1>
                     <h4>Sub Total </h4>
                     <h4>RS : {subTotal} /-</h4>
-                    <Button className='bg-success'>Checkout</Button>
+                    <Checkout subTotal = {subTotal}/>
                 </Col>
             </Row>
         </Container>

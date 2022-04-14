@@ -1,23 +1,37 @@
 import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../actions/userAction";
+import Loader from "../components/Loader";
+import Success from "../components/Success";
+import Error from "../components/Error";
 
 const RegisterScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const registerhandler = () => {
+
+  const registerState = useSelector(state => state.registerUserReducer);
+  const {error, success, loading} = registerState;
+
+  const dispatch = useDispatch();
+
+  const registerHandler = () => {
       if(password !== confirmPassword){
           alert("Password do not match !!");
       }else {
           const user = {name, email, password, confirmPassword};
-          console.log(user);
+          dispatch(registerUser(user));
       }
   }
 
   return (
     <>
       <Container>
+        {loading && <Loader/>}
+        {success && <Success success="User Registered Successfully" />}
+        {error && <Error error="Something went wrong" />}
         <Form>
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>Name</Form.Label>
@@ -59,7 +73,7 @@ const RegisterScreen = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" onClick={registerhandler}>
+          <Button variant="primary" onClick={registerHandler}>
             Register
           </Button>
         </Form>

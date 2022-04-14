@@ -9,6 +9,7 @@ import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
+import OrderScreen from "./screens/OrderScreen";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/cart" component={CartScreen} exact />
         <Route path="/register" component={RegisterScreen} exact />
         <Route path="/login" component={LoginScreen} exact />
+        <Route path="/orders" component={OrderScreen} exact />
       </Switch>
     </BrowserRouter>
   );

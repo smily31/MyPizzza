@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import PizzaCard from "../components/PizzaCard";
 import { Container, Row, Col } from "react-bootstrap";
 import { getAllPizzas } from "../actions/pizzaAction";
+import Loader from "../components/Loader";
+import Error from "../components/Error";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -16,9 +18,9 @@ const HomeScreen = () => {
     <>
       <Container className="my-2">
         {loading ? (
-          <h1>Loading.....</h1>
+          <Loader/>
         ) : error ? (
-          <h1>Error while fetching pizzas</h1>
+          <Error error="Something went wrong"/>
         ) : (
           <Row>
             {pizzas.map((pizza,i) => (
